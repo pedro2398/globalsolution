@@ -26,28 +26,33 @@ public class PacienteController {
 
     @GetMapping
     public List<PacienteDto> getPaciente() {
+        log.info("Mostrando todas os Pacientes ");
         return service.getPaciente();
     }
 
     @GetMapping("{id}")
     public ResponseEntity<PacienteDto> getPcienteByID(@PathVariable Long id) {
+        log.info("Mostrando Paciente com id: " + id);
         return ResponseEntity.ok(service.getPacienteById(id));
     }
 
     @PostMapping
     public ResponseEntity<PacienteDto> postPaciente(@RequestBody Paciente paciente) {
+        log.info("Cadastrando Paciente");
         PacienteDto entity =  service.postPaciente(paciente);
         return ResponseEntity.status(HttpStatus.CREATED).body(entity);
     }
 
     @PutMapping("{id}")
     public ResponseEntity<PacienteDto> putPaciente(@PathVariable Long id, @RequestBody Paciente paciente) {
-        PacienteDto newPaciente = service.putPaciente(id, paciente);
-        return ResponseEntity.ok(newPaciente);
+        log.info("Alterando Paciente com id: " + id);
+        PacienteDto newEntity = service.putPaciente(id, paciente);
+        return ResponseEntity.ok(newEntity);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Object> deletePaciente(@PathVariable Long id) {
+        log.info("Deletando Paciente com id: " + id);
         service.deletePaciente(id);
         return ResponseEntity.noContent().build();
     }
