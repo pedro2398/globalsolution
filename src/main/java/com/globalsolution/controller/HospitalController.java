@@ -1,9 +1,7 @@
 package com.globalsolution.controller;
 
-import com.globalsolution.model.Evento;
 import com.globalsolution.model.Hospital;
 import com.globalsolution.model.dto.HospitalDto;
-import com.globalsolution.service.EventoService;
 import com.globalsolution.service.HospitalService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
