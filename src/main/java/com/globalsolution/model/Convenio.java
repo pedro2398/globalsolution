@@ -1,15 +1,6 @@
 package com.globalsolution.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,12 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "TB_CONVENIO", uniqueConstraints = {
-    @UniqueConstraint(name = "UK_EMAIL_CONVENIO", columnNames = "EMAIL_CONVENIO")
-})
+@Table(name = "TB_CONVENIO")
 public class Convenio {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_CONVENIO")
     @Column(name = "ID_CONVENIO")
     private Long id;
   
@@ -39,11 +28,11 @@ public class Convenio {
     @Column(name = "SENHA_CONVENIO")
     private String senha;
 
-    /*@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(
         name = "ID_HOSPITAL",
         referencedColumnName = "ID_HOSPITAL",
         foreignKey = @ForeignKey(name = "FK_CONVENIO_HOSPITAL")
     )
-    private Hospital hospital;*/
+    private Hospital hospital;
 }

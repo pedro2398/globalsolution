@@ -24,8 +24,8 @@ public class PacienteService {
         return new PacienteDto(entity);
     }
 
-    public List<PacienteDto> getPaciente(Pageable pageable) {
-        Page<Paciente> entities = repository.findAllPage(pageable);
+    public List<PacienteDto> getPaciente() {
+        List<Paciente> entities = repository.findAll();
         List<PacienteDto> dtos = new ArrayList<PacienteDto>();
         for(Paciente entity: entities) {
             PacienteDto dto = new PacienteDto(entity);

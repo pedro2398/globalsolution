@@ -2,11 +2,7 @@ package com.globalsolution.model.pessoa;
 
 import com.globalsolution.model.Convenio;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -69,9 +65,13 @@ public class Paciente extends Pessoa {
 
     @Getter
     @Setter
-    @Column(name = "CONV_PACIENTE")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
+    @JoinColumn(
+            name = "ID_CONVENIO",
+            referencedColumnName = "ID_CONVENIO",
+            foreignKey = @ForeignKey(name = "FK_PACIENTE_CONVENIO")
+    )
     private Convenio convenio;    
-    
 
     public Paciente() {
         super("PACIENTE");

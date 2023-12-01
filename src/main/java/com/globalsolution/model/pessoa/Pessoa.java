@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_PESSOA")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID_PESSOA")
     private Long id;
 

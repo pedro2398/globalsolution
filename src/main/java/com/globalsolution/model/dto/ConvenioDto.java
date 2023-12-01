@@ -15,7 +15,7 @@ public class ConvenioDto {
     private String nome;
     private String telefone;
     private String email;
-    private Hospital hospital; 
+    private Hospital hospital;
 
     public ConvenioDto(Convenio convenio) {
         id = convenio.getId();

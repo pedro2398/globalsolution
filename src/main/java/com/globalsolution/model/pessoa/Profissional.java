@@ -2,11 +2,7 @@ package com.globalsolution.model.pessoa;
 
 import com.globalsolution.model.Cargo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,8 +19,13 @@ public class Profissional extends Pessoa {
 
     @Getter
     @Setter
-    @Column(name = "CARGO_PROFISSIONAL")
-    private Cargo cargo; 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
+    @JoinColumn(
+            name = "ID_CARGO",
+            referencedColumnName = "ID_CARGO",
+            foreignKey = @ForeignKey(name = "FK_PROFISSIONAL_CARGO")
+    )
+    private Cargo cargo;
 
     public Profissional() {
         super("PROFISSIONAL");
