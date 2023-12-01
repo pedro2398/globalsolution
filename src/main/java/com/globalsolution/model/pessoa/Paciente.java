@@ -3,6 +3,7 @@ package com.globalsolution.model.pessoa;
 import com.globalsolution.model.Convenio;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,21 +16,25 @@ import lombok.Setter;
 public class Paciente extends Pessoa {
     @Getter
     @Setter
+    @NotBlank
     @Column(name = "CPF_PACIENTE")
     private String cpf;
     
     @Getter
     @Setter
+    @NotBlank
     @Column(name = "CARTEIRINHA_PACIENTE")
     private String carteirinha;
 
     @Getter
     @Setter
+    @NotBlank
     @Column(name = "TEL_PACIENTE")
     private String telefone;
 
     @Getter
     @Setter
+    @NotBlank
     @Column(name = "RUA_PACIENTE")
     private String rua;
 
@@ -40,31 +45,37 @@ public class Paciente extends Pessoa {
 
     @Getter
     @Setter
+    @NotBlank
     @Column(name = "NUMERO_RESIDENCIAL_PACIENTE")
     private String numeroResidencial;
 
     @Getter
     @Setter
+    @NotBlank
     @Column(name = "BAIRRO_PACIENTE")
     private String bairro;
 
     @Getter
     @Setter
+    @NotBlank
     @Column(name = "CIDADE_PACIENTE")
     private String cidade;
 
     @Getter
     @Setter
+    @NotBlank
     @Column(name = "UF_PACIENTE")
     private String estado; 
     
     @Getter
     @Setter
+    @NotBlank
     @Column(name = "CEP_PACIENTE")
     private String cep; 
 
     @Getter
     @Setter
+    @NotBlank
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(
             name = "ID_CONVENIO",

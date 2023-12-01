@@ -2,6 +2,7 @@ package com.globalsolution.controller;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,9 @@ public class PacienteController {
     PacienteService service;
 
     @GetMapping
-    public List<PacienteDto> getPaciente() {
+    public List<PacienteDto> getPaciente(@PageableDefault(size = 3, sort = "id") Pageable pageable) {
         log.info("Mostrando todas os Pacientes ");
-        return service.getPaciente();
+        return service.getPaciente(pageable);
     }
 
     @GetMapping("{id}")
@@ -37,14 +38,14 @@ public class PacienteController {
     }
 
     @PostMapping
-    public ResponseEntity<PacienteDto> postPaciente(@RequestBody Paciente paciente) {
+    public ResponseEntity<PacienteDto> postPaciente(@RequestBody @Valid Paciente paciente) {
         log.info("Cadastrando Paciente");
         PacienteDto entity =  service.postPaciente(paciente);
         return ResponseEntity.status(HttpStatus.CREATED).body(entity);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<PacienteDto> putPaciente(@PathVariable Long id, @RequestBody Paciente paciente) {
+    public ResponseEntity<PacienteDto> putPaciente(@PathVariable Long id, @RequestBody @Valid Paciente paciente) {
         log.info("Alterando Paciente com id: " + id);
         PacienteDto newEntity = service.putPaciente(id, paciente);
         return ResponseEntity.ok(newEntity);

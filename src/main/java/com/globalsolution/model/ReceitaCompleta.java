@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,14 +30,16 @@ public class ReceitaCompleta {
     @Column(name = "ID_RECEITA_COMPLETA")
     private Long id;
 
+    @NotBlank
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(
         name = "ID_RECEITA_PARCIAL",
         referencedColumnName = "ID_RECEITA_PARCIAL",
         foreignKey = @ForeignKey(name = "FK_RECEITA_COMPLETA_RECEITA_PARCAL")
     )
-    private ReceitaParcial receitaParcial; 
-    
+    private ReceitaParcial receitaParcial;
+
+    @NotBlank
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(
         name = "ID_PROFISSIONAL",
@@ -45,6 +48,7 @@ public class ReceitaCompleta {
     )
     private Profissional profissional;
 
+    @NotBlank
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(
         name = "ID_PACIENTE",

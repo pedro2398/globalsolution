@@ -3,9 +3,12 @@ package com.globalsolution.controller;
 import com.globalsolution.model.Convenio;
 import com.globalsolution.model.dto.ConvenioDto;
 import com.globalsolution.service.ConvenioService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +24,9 @@ public class ConvenioController {
     ConvenioService service;
 
     @GetMapping
-    public List<ConvenioDto> getConvenio() {
+    public List<ConvenioDto> getConvenio(@PageableDefault(size = 3, sort = "id") Pageable pageRequest) {
         log.info("Mostrando todas os Convenios ");
-        return service.getConvenio();
+        return service.getConvenio(pageRequest);
     }
 
     @GetMapping("{id}")
@@ -33,14 +36,14 @@ public class ConvenioController {
     }
 
     @PostMapping
-    public ResponseEntity<ConvenioDto> postConvenio(@RequestBody Convenio convenio) {
+    public ResponseEntity<ConvenioDto> postConvenio(@RequestBody @Valid Convenio convenio) {
         log.info("Cadastrando Convenio");
         ConvenioDto entity =  service.postConvenio(convenio);
         return ResponseEntity.status(HttpStatus.CREATED).body(entity);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ConvenioDto> putConvenio(@PathVariable Long id, @RequestBody Convenio convenio) {
+    public ResponseEntity<ConvenioDto> putConvenio(@PathVariable Long id, @RequestBody @Valid Convenio convenio) {
         log.info("Alterando Convenio com id: " + id);
         ConvenioDto newEntity = service.putConvenio(id, convenio);
         return ResponseEntity.ok(newEntity);

@@ -2,6 +2,7 @@ package com.globalsolution.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.globalsolution.model.ReceitaParcial;
@@ -20,8 +21,8 @@ public class ReceitaParcialService {
         return entity;
     }
 
-    public List<ReceitaParcial> getReceitaParcial() {
-        List<ReceitaParcial> entities = repository.findAll();
+    public List<ReceitaParcial> getReceitaParcial(Pageable pageable) {
+        List<ReceitaParcial> entities = repository.findAll(pageable).getContent();
         return entities;
     }
 

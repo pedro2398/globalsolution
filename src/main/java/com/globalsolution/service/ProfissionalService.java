@@ -3,6 +3,8 @@ package com.globalsolution.service;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.globalsolution.model.dto.ProfissionalDto;
@@ -22,10 +24,10 @@ public class ProfissionalService {
         return new ProfissionalDto(entity);
     }
 
-    public List<ProfissionalDto> getProfissional() {
-        List<Profissional> entities = repository.findAll();
+    public List<ProfissionalDto> getProfissional(Pageable pageable) {
+        Page<Profissional> entities = repository.findAll(pageable);
         List<ProfissionalDto> dtos = new ArrayList<ProfissionalDto>();
-        for(Profissional entity: entities) {
+        for(Profissional entity: entities.getContent()) {
             ProfissionalDto dto = new ProfissionalDto(entity);
             dtos.add(dto);
         }

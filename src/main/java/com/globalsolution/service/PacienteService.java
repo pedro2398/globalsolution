@@ -24,10 +24,10 @@ public class PacienteService {
         return new PacienteDto(entity);
     }
 
-    public List<PacienteDto> getPaciente() {
-        List<Paciente> entities = repository.findAll();
+    public List<PacienteDto> getPaciente(Pageable pageable) {
+        Page<Paciente> entities = repository.findAll(pageable);
         List<PacienteDto> dtos = new ArrayList<PacienteDto>();
-        for(Paciente entity: entities) {
+        for(Paciente entity: entities.getContent()) {
             PacienteDto dto = new PacienteDto(entity);
             dtos.add(dto);
         }

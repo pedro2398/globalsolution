@@ -2,9 +2,12 @@ package com.globalsolution.controller;
 
 import com.globalsolution.model.ReceitaParcial;
 import com.globalsolution.service.ReceitaParcialService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +23,9 @@ public class ReceitaParcialController {
     ReceitaParcialService service;
 
     @GetMapping
-    public List<ReceitaParcial> getReceitaParcial() {
+    public List<ReceitaParcial> getReceitaParcial(@PageableDefault(size = 3, sort = "id") Pageable pageable) {
         log.info("Mostrando todas as Receitas Parciais");
-        return service.getReceitaParcial();
+        return service.getReceitaParcial(pageable);
     }
 
     @GetMapping("{id}")
@@ -32,14 +35,14 @@ public class ReceitaParcialController {
     }
 
     @PostMapping
-    public ResponseEntity<ReceitaParcial> postReceitaParcial(@RequestBody ReceitaParcial newEntity) {
+    public ResponseEntity<ReceitaParcial> postReceitaParcial(@RequestBody @Valid ReceitaParcial newEntity) {
         log.info("Cadastrando Receita Parcial");
         ReceitaParcial entity =  service.postReceitaParcial(newEntity);
         return ResponseEntity.status(HttpStatus.CREATED).body(entity);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ReceitaParcial> putReceitaParcical(@PathVariable Long id, @RequestBody ReceitaParcial entity) {
+    public ResponseEntity<ReceitaParcial> putReceitaParcical(@PathVariable Long id, @RequestBody @Valid ReceitaParcial entity) {
         log.info("Alterando Receita Parcial com id: " + id);
         ReceitaParcial newEntity = service.putReceitaParcial(id, entity);
         return ResponseEntity.ok(newEntity);

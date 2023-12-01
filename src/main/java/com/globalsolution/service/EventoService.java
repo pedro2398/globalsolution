@@ -2,6 +2,8 @@ package com.globalsolution.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.globalsolution.model.Evento;
@@ -20,8 +22,8 @@ public class EventoService {
         return entity;
     }
 
-    public List<Evento> getEvento() {
-        List<Evento> entities = repository.findAll();
+    public Page<Evento> getEvento(Pageable pageable) {
+        Page<Evento> entities = repository.findAll(pageable);
         return entities;
     }
 

@@ -1,6 +1,7 @@
 package com.globalsolution.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,16 +16,20 @@ public class Convenio {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_CONVENIO")
     @Column(name = "ID_CONVENIO")
     private Long id;
-  
+
+    @NotBlank
     @Column(name = "NM_CONVENIO")
     private String nome;
 
+    @NotBlank
     @Column(name = "TEL_CONVENIO")
     private String telefone;
 
+    @NotBlank
     @Column(name = "EMAIL_CONVENIO")
     private String email;
 
+    @NotBlank
     @Column(name = "SENHA_CONVENIO")
     private String senha;
 

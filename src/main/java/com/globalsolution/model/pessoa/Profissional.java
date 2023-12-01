@@ -3,6 +3,7 @@ package com.globalsolution.model.pessoa;
 import com.globalsolution.model.Cargo;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,11 +15,13 @@ import lombok.Setter;
 public class Profissional extends Pessoa {
     @Getter
     @Setter
+    @NotBlank
     @Column(name = "REGISTRO_PROFISSIONAL")
     private String refistroProfissional;
 
     @Getter
     @Setter
+    @NotBlank
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(
             name = "ID_CARGO",

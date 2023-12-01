@@ -3,9 +3,12 @@ package com.globalsolution.controller;
 import com.globalsolution.model.dto.ProfissionalDto;
 import com.globalsolution.model.pessoa.Profissional;
 import com.globalsolution.service.ProfissionalService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +24,9 @@ public class ProfissionalController {
     ProfissionalService service;
 
     @GetMapping
-    public List<ProfissionalDto> getProfissional() {
+    public List<ProfissionalDto> getProfissional(@PageableDefault(size = 3, sort = "id") Pageable pageable) {
         log.info("Mostrando todas os Profissionais");
-        return service.getProfissional();
+        return service.getProfissional(pageable);
     }
 
     @GetMapping("{id}")
@@ -33,14 +36,14 @@ public class ProfissionalController {
     }
 
     @PostMapping
-    public ResponseEntity<ProfissionalDto> postProfissional(@RequestBody Profissional profissional) {
+    public ResponseEntity<ProfissionalDto> postProfissional(@RequestBody @Valid Profissional profissional) {
         log.info("Cadastrando Profissional");
         ProfissionalDto entity =  service.postProfissional(profissional);
         return ResponseEntity.status(HttpStatus.CREATED).body(entity);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ProfissionalDto> putProfissional(@PathVariable Long id, @RequestBody Profissional profissional) {
+    public ResponseEntity<ProfissionalDto> putProfissional(@PathVariable Long id, @RequestBody @Valid Profissional profissional) {
         log.info("Alterando Profissional com id: " + id);
         ProfissionalDto newEntity = service.putProfissional(id, profissional);
         return ResponseEntity.ok(newEntity);

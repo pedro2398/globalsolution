@@ -2,6 +2,7 @@ package com.globalsolution.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.globalsolution.model.Medicamento;
@@ -20,8 +21,8 @@ public class MedicamentoService {
         return entity;
     }
 
-    public List<Medicamento> getMedicamento() {
-        List<Medicamento> entities = repository.findAll();
+    public List<Medicamento> getMedicamento(Pageable pageable) {
+        List<Medicamento> entities = repository.findAll(pageable).getContent();
         return entities;
     }
 

@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,9 +22,11 @@ public class Cargo {
     @Column(name = "ID_CARGO")
     private Long id;
 
+    @NotBlank
     @Column(name = "TITULO_CARGO")
     private String titulo;
 
+    @NotBlank
     @Column(name = "DESC_CARGO")
     private String descricao;
 }

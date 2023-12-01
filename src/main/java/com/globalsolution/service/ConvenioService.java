@@ -3,6 +3,8 @@ package com.globalsolution.service;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.globalsolution.model.Convenio;
@@ -22,10 +24,10 @@ public class ConvenioService {
         return new ConvenioDto(entity);
     }
 
-    public List<ConvenioDto> getConvenio() {
-        List<Convenio> entities = repository.findAll();
+    public List<ConvenioDto> getConvenio(Pageable pageable) {
+        Page<Convenio> entities = repository.findAll(pageable);
         List<ConvenioDto> dtos = new ArrayList<ConvenioDto>();
-        for(Convenio entity: entities) {
+        for(Convenio entity: entities.getContent()) {
             ConvenioDto dto = new ConvenioDto(entity);
             dtos.add(dto);
         }
