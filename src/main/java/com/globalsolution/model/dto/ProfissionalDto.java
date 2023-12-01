@@ -16,7 +16,7 @@ public class ProfissionalDto {
     private String email;
     private String celular;
     private Cargo cargo;
-    private String refistroProfissional;
+    private String registroProfissional;
 
     public ProfissionalDto(Profissional profissional) {
         id = profissional.getId();
@@ -24,6 +24,6 @@ public class ProfissionalDto {
         email = profissional.getEmail();
         celular = profissional.getCelular();
         cargo = profissional.getCargo();
-        refistroProfissional = profissional.getRefistroProfissional();
+        registroProfissional = profissional.getRegistroProfissional();
     }
 }

@@ -29,28 +29,22 @@ public class ReceitaParcial {
     @Column(name = "ID_RECEITA_PARCIAL")
     private Long id;
 
-    @NotBlank
     @Column(name = "QTD_RECEITA_PARCIAL")
     private Integer quantidade;
 
-    @NotBlank
     @Column(name = "HORARIO_RECEITA_PARCIAL")
     private Timestamp horario;
 
-    @NotBlank
     @Column(name = "FREQUENCIA_RECEITA_PARCIAL")
     private Integer frequencia;
 
-    @NotBlank
     @Column(name = "DT_INICIO_RECEITA_PARCIAL")
     private LocalDate dataInicio;
 
-    @NotBlank
     @Column(name = "DT_FIM_RECEITA_PARCIAL")
     private LocalDate dataFim;
 
-    @NotBlank
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(
         name = "ID_MEDICAMENTO",
         referencedColumnName = "ID_MEDICAMENTO",

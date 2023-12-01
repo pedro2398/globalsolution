@@ -15,13 +15,11 @@ import lombok.Setter;
 public class Profissional extends Pessoa {
     @Getter
     @Setter
-    @NotBlank
     @Column(name = "REGISTRO_PROFISSIONAL")
-    private String refistroProfissional;
+    private String registroProfissional;
 
     @Getter
     @Setter
-    @NotBlank
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(
             name = "ID_CARGO",
@@ -34,9 +32,9 @@ public class Profissional extends Pessoa {
         super("PROFISSIONAL");
     }
 
-     public Profissional(Long id, String nome, String email, String senha, String celular, String refistroProfissional, Cargo cargo) {
+     public Profissional(Long id, String nome, String email, String senha, String celular, String registroProfissional, Cargo cargo) {
         super(id, nome, email, senha, celular, "PROFISSIONAL");
         this.cargo =  cargo;
-        this.refistroProfissional = refistroProfissional;
+        this.registroProfissional = registroProfissional;
     }
 }

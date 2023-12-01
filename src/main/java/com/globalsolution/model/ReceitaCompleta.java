@@ -30,8 +30,7 @@ public class ReceitaCompleta {
     @Column(name = "ID_RECEITA_COMPLETA")
     private Long id;
 
-    @NotBlank
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(
         name = "ID_RECEITA_PARCIAL",
         referencedColumnName = "ID_RECEITA_PARCIAL",
@@ -39,8 +38,7 @@ public class ReceitaCompleta {
     )
     private ReceitaParcial receitaParcial;
 
-    @NotBlank
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(
         name = "ID_PROFISSIONAL",
         referencedColumnName = "ID_PESSOA",
@@ -48,8 +46,7 @@ public class ReceitaCompleta {
     )
     private Profissional profissional;
 
-    @NotBlank
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(
         name = "ID_PACIENTE",
         referencedColumnName = "ID_PESSOA",

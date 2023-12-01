@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,11 +23,10 @@ public class Medicamento {
     @Column(name = "ID_MEDICAMENTO")
     private Long id;
 
-    @NotBlank
     @Column(name = "NM_MEDICAMENTO")
     private String nome;
 
-    @NotBlank
+    @Positive
     @Column(name = "VIA_ADM_MEDICAMENTO")
-    private Integer viaAdministracao;
+        private Integer viaAdministracao;
 }

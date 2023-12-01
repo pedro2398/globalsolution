@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import com.globalsolution.model.Evento;
 import com.globalsolution.repository.EventoRepository;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 @Service
 public class EventoService {
     @Autowired
@@ -33,6 +36,7 @@ public class EventoService {
     }
 
     public Evento postEvento(Evento evento) {
+        evento.setEventoTime(Timestamp.valueOf(LocalDateTime.now()));
         repository.save(evento);
         return evento;
     }

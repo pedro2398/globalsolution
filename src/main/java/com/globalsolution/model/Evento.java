@@ -31,7 +31,6 @@ public class Evento {
     @Column(name = "ID_EVENTO")
     private Long id;
 
-    @NotBlank
     @Column(name = "TIME_EVENTO")
     private Timestamp eventoTime;
 
@@ -43,7 +42,6 @@ public class Evento {
     @Column(name = "TIPO_EVENTO")
     private String tipo;
 
-    @NotBlank
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(
         name = "ID_PACIENTE",
