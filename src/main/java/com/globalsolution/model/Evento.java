@@ -16,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,7 @@ public class Evento {
     @Column(name = "ID_EVENTO")
     private Long id;
 
+    @NotNull
     @Column(name = "TIME_EVENTO")
     private Timestamp eventoTime;
 
@@ -42,6 +44,7 @@ public class Evento {
     @Column(name = "TIPO_EVENTO")
     private String tipo;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(
         name = "ID_PACIENTE",

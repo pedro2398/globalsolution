@@ -4,6 +4,7 @@ import com.globalsolution.model.Convenio;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -75,7 +76,7 @@ public class Paciente extends Pessoa {
 
     @Getter
     @Setter
-    @NotBlank
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(
             name = "ID_CONVENIO",

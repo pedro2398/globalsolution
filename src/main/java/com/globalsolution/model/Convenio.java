@@ -2,6 +2,7 @@ package com.globalsolution.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ public class Convenio {
     @Column(name = "SENHA_CONVENIO")
     private String senha;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(
         name = "ID_HOSPITAL",

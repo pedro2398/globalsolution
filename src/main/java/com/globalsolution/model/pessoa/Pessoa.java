@@ -9,6 +9,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,18 +28,22 @@ public class Pessoa {
     @Column(name = "ID_PESSOA")
     private Long id;
 
+    @NotBlank
     @Column(name = "NM_PESSOA")
     private String nome;
 
+    @NotBlank
     @Column(name = "EMAIL_PESSOA")
     private String email;
 
+    @NotBlank
     @Column(name = "SENHA_PESSOA")
     private String senha;
 
+    @NotBlank
     @Column(name = "CEL_PESSOA")
-    private String celular; 
-    
+    private String celular;
+
     @Column(name = "TP_PESSOA")
     private String tipo;
 
